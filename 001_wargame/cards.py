@@ -2,20 +2,20 @@ from random import shuffle
 
 
 class Deck:
-    suits = ("spades", "hearts", "diamonds", "clubs")
     figures = {"ace": 14, "king": 13, "queen": 12, "jack": 11, "ten": 10, "nine": 9}
 
-    deck = []
-
-    def __init__(self):
+    def __init__(self, suits=("spades", "hearts", "diamonds", "clubs")):
+        self.deck = []
         for i in self.figures:
-            for j in self.suits:
+            for j in suits:
                 self.deck.append(i + " of " + j)
 
     def reshuffle(self):
+        """Shuffles common deck"""
         shuffle(self.deck)
 
     def deal(self, deck1, deck2):
+        """Deals the cards between two players"""
         for i in range(len(self.deck)):
             if i % 2 == 0:
                 deck1.append(self.deck.pop())
