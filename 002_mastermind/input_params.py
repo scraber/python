@@ -9,7 +9,12 @@ def length():
 
 
 def chars():
-    return tuple(input("Available password characters: "))
+    char = tuple(input("Available password characters: "))
+    if 0 != len(char):
+        return char
+    else:
+        print("No characters passed!")
+        return chars()
 
 
 def attempts():
