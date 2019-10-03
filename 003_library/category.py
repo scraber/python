@@ -6,3 +6,6 @@ class Category:
 
     def __str__(self):
         return f"{self.category} {self.id}"
+
+    def to_json(self):
+        return {self.category, self.id}
