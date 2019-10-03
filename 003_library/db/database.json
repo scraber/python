@@ -1,0 +1,12 @@
+{
+    "title": "dupa",
+    "isbn": 546,
+    "category": {
+        "category": "Fantasy",
+        "id": 1
+    },
+    "author": {
+        "firstname": "jan",
+        "lastname": "dupa"
+    }
+}

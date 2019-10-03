@@ -10,7 +10,7 @@ class Database:
     def __init__(self, db_filename: str = "database.json"):
         logging.basicConfig(level=logging.DEBUG)
 
-        self.users = []
+        self.users = list()
         self.books = list()
         self.db = {"users": self.users, "books": self.books}
 
@@ -29,11 +29,11 @@ class Database:
         logging.debug("Book %s added to database", new_book.title)
 
     def save_db(self, db_filename: str = "database.json"):
-        new_db = dict()
-        new_db = self.db["books"][-1].to_json()
-        print(new_db)
+        # new_db = dict()
+        # new_db = self.db["books"][-1].to_json()
+        # print(new_db)
         with open(db_filename, 'w') as json_db:
-            json.dump(new_db, json_db, indent=4)
+            json.dump(self.db, json_db, indent=4)
 
 
 db = Database()
