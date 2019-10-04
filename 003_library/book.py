@@ -1,6 +1,6 @@
 from category import Category
 from author import Author
-from category_manager import Manager
+
 
 class Book:
     def __init__(self, uid: int, title: str, category: Category, isbn: int, author: Author):

@@ -5,19 +5,19 @@ import json
 
 class UserDatabase:
 
-    def __init__(self, db_filename: str = "user_database.json"):
+    def __init__(self, db_filename: str = "json/user_database.json"):
         logging.basicConfig(level=logging.DEBUG)
         self.users = dict()
 
-        with open(db_filename) as json_db:
-            try:
+        try:
+            with open(db_filename) as json_db:
                 data = json.load(json_db)
-                for uid in data:
-                    self.users[int(uid)] = User(uid, data[uid]["firstname"], data[uid]["lastname"])
-            except ValueError:
-                logging.error("Couldn't parse %s", db_filename)
-            except FileNotFoundError:
-                logging.warning("Couldn't find %s", db_filename)
+            for uid in data:
+                self.users[int(uid)] = User(uid, data[uid]["firstname"], data[uid]["lastname"])
+        except ValueError:
+            logging.error("Couldn't parse %s", db_filename)
+        except FileNotFoundError:
+            logging.warning("Couldn't find %s", db_filename)
 
     def add_user(self, new_user: User):
         if new_user not in self.users:
@@ -33,7 +33,7 @@ class UserDatabase:
         else:
             logging.warning("User %s doesn't exists!", remove_user)
 
-    def save_db(self, db_filename: str = "user_database.json"):
+    def save_db(self, db_filename: str = "json/user_database.json"):
         update_db = dict()
         for uid in self.users:
             update_db[uid] = self.users.get(uid).to_json()
