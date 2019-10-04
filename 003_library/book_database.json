@@ -1,0 +1,50 @@
+{
+    "1": {
+        "title": "The Three Musketeers",
+        "isbn": 54734534756,
+        "genre": {
+            "category": "Historical",
+            "id": 5
+        },
+        "author": {
+            "firstname": "Alexandre",
+            "lastname": "Dumas"
+        }
+    },
+    "2": {
+        "title": "Life of Pi",
+        "isbn": 235264563563,
+        "genre": {
+            "category": "Biography",
+            "id": 6
+        },
+        "author": {
+            "firstname": "Yann",
+            "lastname": "Martel"
+        }
+    },
+    "3": {
+        "title": "V for Vendetta",
+        "isbn": 849837498,
+        "genre": {
+            "category": "Thriller",
+            "id": 7
+        },
+        "author": {
+            "firstname": "Alan",
+            "lastname": "Moore"
+        }
+    },
+    "4": {
+        "title": "Ciezko zyc w surgu tak jak dzis",
+        "isbn": 534635345,
+        "genre": {
+            "category": "SciFi",
+            "id": 2
+        },
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        }
+    }
+}

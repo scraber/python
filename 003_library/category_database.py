@@ -4,7 +4,7 @@ import logging
 
 class CategoryDatabase:
 
-    def __init__(self, db_filename: str = "json/category_database.json"):
+    def __init__(self, db_filename: str = "category_database.json"):
         logging.basicConfig(level=logging.DEBUG)
         self.categories = dict()
 
@@ -30,7 +30,7 @@ class CategoryDatabase:
         else:
             logging.warning("User %s doesn't exists!", remove_category)
 
-    def save_db(self, db_filename: str = "json/category_database.json"):
+    def save_db(self, db_filename: str = "category_database.json"):
         with open(db_filename, 'w') as json_db:
             json.dump(self.categories, json_db, indent=4)
 

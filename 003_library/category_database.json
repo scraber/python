@@ -1,0 +1,10 @@
+{
+    "Romance": 1,
+    "SciFi": 2,
+    "Fantasy": 3,
+    "Crime": 4,
+    "Historical": 5,
+    "Biography": 6,
+    "Thriller": 7,
+    "Science": 8
+}

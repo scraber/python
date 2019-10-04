@@ -4,7 +4,7 @@ import logging
 
 class Database:
 
-    def __init__(self, db_filename: str = "json/database.json"):
+    def __init__(self, db_filename: str = "database.json"):
         logging.basicConfig(level=logging.DEBUG)
         self.db = dict()
 
@@ -16,7 +16,7 @@ class Database:
         except FileNotFoundError:
             logging.warning("Couldn't find %s", db_filename)
 
-    def save_db(self, db_filename: str = "json/database.json"):
+    def save_db(self, db_filename: str = "database.json"):
         with open(db_filename, 'w') as json_db:
             json.dump(self.db, json_db, indent=4)
 

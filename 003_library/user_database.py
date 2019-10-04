@@ -5,7 +5,7 @@ import json
 
 class UserDatabase:
 
-    def __init__(self, db_filename: str = "json/user_database.json"):
+    def __init__(self, db_filename: str = "user_database.json"):
         logging.basicConfig(level=logging.DEBUG)
         self.users = dict()
 
@@ -33,12 +33,20 @@ class UserDatabase:
         else:
             logging.warning("User %s doesn't exists!", remove_user)
 
-    def save_db(self, db_filename: str = "json/user_database.json"):
+    def save_db(self, db_filename: str = "user_database.json"):
         update_db = dict()
         for uid in self.users:
             update_db[uid] = self.users.get(uid).to_json()
         with open(db_filename, 'w') as json_db:
             json.dump(update_db, json_db, indent=4)
+
+    def get_users_list(self, view: str = "user"):
+        user_list = list()
+
+        for uid in self.users:
+            user_list.append(self.users.get(uid).__str__(view))
+
+        return user_list
 
 
 test = UserDatabase()

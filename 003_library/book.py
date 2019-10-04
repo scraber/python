@@ -9,9 +9,10 @@ class Book:
         self.category = category
         self.isbn = isbn
         self.author = author
+        altor = self.author.__str__()
 
     def __str__(self):
-        return f"Title: {self.title}, ISBN: {self.isbn}, Author: {self.author}"
+        return f"{self.uid}: {self.title} by Author: {self.author.__str__()}, Genre: {self.category.__str__()}, ISBN: {self.isbn}"
 
     def to_json(self):
         return {"title": self.title, "isbn": self.isbn, "genre": vars(self.category),

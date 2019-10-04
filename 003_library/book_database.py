@@ -5,7 +5,7 @@ import json
 
 class BookDatabase:
 
-    def __init__(self, db_filename: str = "json/book_database.json"):
+    def __init__(self, db_filename: str = "book_database.json"):
         logging.basicConfig(level=logging.DEBUG)
         self.books = dict()
 
@@ -13,8 +13,10 @@ class BookDatabase:
             with open(db_filename) as json_db:
                 data = json.load(json_db)
             for uid in data:
-                self.books[int(uid)] = Book(uid, data[uid]["title"], data[uid]["genre"], data[uid]["isbn"],
-                                            data[uid]["author"])
+                self.books[int(uid)] = Book(uid, data[uid]["title"],
+                                            Category(data[uid]["genre"]["category"], data[uid]["genre"]["id"]),
+                                            data[uid]["isbn"],
+                                            Author(data[uid]["author"]["firstname"], data[uid]["author"]["lastname"]))
         except ValueError:
             logging.error("Cannot parse %s", db_filename)
         except FileNotFoundError:
@@ -34,15 +36,30 @@ class BookDatabase:
         else:
             logging.warning("Book %s doesn't exists!", remove_book.title)
 
-    def save_db(self, db_filename: str = "json/book_database.json"):
+    def save_db(self, db_filename: str = "book_database.json"):
         update_db = dict()
         for uid in self.books:
             update_db[uid] = self.books.get(uid).to_json()
         with open(db_filename, 'w') as json_db:
             json.dump(update_db, json_db, indent=4)
 
+    def list_by_category(self, category):
+        book_list = list()
 
-test = BookDatabase()
-test.add_book(Book(1, "dupa", Category("Fantasy", 1), 546, Author("jan", "dupa")))
-test.add_book(Book(2, "elo", Category("romance", 1), 546, Author("jan", "dupa")))
-test.save_db()
+        for uid in self.books:
+            book = self.books.get(uid)
+            if category == book.category.category:
+                book_list.append(book.__str__())
+
+        return book_list
+
+    def get_book_list(self):
+
+        book_list = list()
+
+        for uid in self.books:
+            single_book = self.books.get(uid)
+            tostrbook = single_book.__str__()
+            book_list.append(tostrbook)
+
+        return book_list

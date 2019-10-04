@@ -5,7 +5,7 @@ class Category:
         self.id = id
 
     def __str__(self):
-        return f"{self.category} {self.id}"
+        return f"{self.category}"
 
     def to_json(self):
         return {self.category, self.id}
