@@ -8,8 +8,8 @@ class Rentals:
     def __init__(self, user_db: UserDatabase, book_db: BookDatabase, db_filename: str = "rentals_history.json"):
         logging.basicConfig(level=logging.DEBUG)
 
-        self.rentals = {"users": {str(user_db.users[idx].uid): list() for idx in user_db.users},
-                        "books": {str(book_db.books[idx].uid): list() for idx in book_db.books}}
+        self.rentals = {"users": {str(user_db.db[idx].uid): list() for idx in user_db.db},
+                        "books": {str(book_db.db[idx].uid): list() for idx in book_db.db}}
 
         try:
             with open(db_filename) as json_db:

@@ -2,8 +2,8 @@ import curses
 from user_database import UserDatabase
 from book_database import BookDatabase, Book, Author, Category
 
-users = UserDatabase()
-books = BookDatabase()
+users = UserDatabase("user_database.json")
+books = BookDatabase("book_database.json")
 
 login = ["User", "Admin", "Exit"]
 admin_login = ["Book Database", "User Database", "Manage Books", "Manage Users"]
@@ -33,7 +33,7 @@ def print_submenu_text(stdscr, text):
     stdscr.clear()
     h, w = stdscr.getmaxyx()
     x = w // 2
-    y = 0
+    y = h * 3 // 7
     stdscr.addstr(y, x, text)
     stdscr.refresh()
 
@@ -106,7 +106,7 @@ def add_book(stdscr):
     #             Author(new_book_author_first, new_book_author_last))
     new_book = Book(str(console_input(stdscr, "Title")), "SciFi",
                     534635345, Author("Borys", "Szyc"), True)
-    books.add_book(new_book)
+    books.add(new_book)
     books.save_db()
     print_center(stdscr, f"Book '{new_book.title}' added")
     stdscr.getch()
