@@ -8,7 +8,13 @@ class Category:
         self.uid = next(self.__id_iter)
         self.category = category
 
-    def __str__(self):
+    def __eq__(self, other):
+        if self.category == other.category:
+            return True
+        else:
+            return False
+
+    def get_name(self):
         return f"{self.category}"
 
     def to_json(self):

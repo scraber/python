@@ -9,7 +9,7 @@ class CategoryDatabase(AbstractDatabase):
         with open(self.db_filename) as json_db:
             data = json.load(json_db)
         for uid in data:
-            self.db[int(uid)] = Category(data[uid])
+            self.data[int(uid)] = Category(data[uid])
 
 #
 # db = CategoryDatabase("category_database.json")

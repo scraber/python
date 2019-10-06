@@ -18,18 +18,14 @@ class Book:
     def __str__(self):
         return f"{self.uid}: {self.title} by Author: {self.author.__str__()}, Category: {self.category}, ISBN: {self.isbn}, Available: {self.available}"
 
-    # def __eq__(self, other):
-    #     pass
-    # if self.uid != other.uid:
-    #     return False
-    # elif self.title != other.title:
-    #     return False
-    # elif self.isbn != other.isbn:
-    #     return False
-    # elif vars(self.author) != vars(other.author):
-    #     return False
-    # else:
-    #     return True
+    def __eq__(self, other):
+        if self.title == other.title and self.isbn == other.isbn and self.author == other.author:
+            return True
+        else:
+            return False
+
+    def get_name(self):
+        return f"{self.title}"
 
     def to_json(self):
         return {"title": self.title, "isbn": self.isbn, "category": self.category,

@@ -6,16 +6,16 @@ import json
 class UserDatabase(AbstractDatabase):
 
     def load_from_file(self):
-            with open(self.db_filename) as json_db:
-                data = json.load(json_db)
-            for uid in data:
-                self.db[int(uid)] = User(data[uid]["firstname"], data[uid]["lastname"])
+        with open(self.db_filename) as json_db:
+            data = json.load(json_db)
+        for uid in data:
+            self.data[int(uid)] = User(data[uid]["firstname"], data[uid]["lastname"])
 
     def get_users_list(self, view: str = "user"):
         user_list = list()
 
-        for uid in self.db:
-            user_list.append(self.db.get(uid).__str__(view))
+        for uid in self.data:
+            user_list.append(self.data.get(uid).__str__(view))
 
         return user_list
 

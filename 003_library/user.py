@@ -15,5 +15,14 @@ class User:
         elif "admin" == view:
             return f"{self.uid}: {self.firstname} {self.lastname}"
 
+    def __eq__(self, other):
+        if self.firstname == other.firstname and self.lastname == other.lastname:
+            return True
+        else:
+            return False
+
+    def get_name(self):
+        return f"{self.firstname} {self.lastname}"
+
     def to_json(self):
         return {"firstname": self.firstname, "lastname": self.lastname}

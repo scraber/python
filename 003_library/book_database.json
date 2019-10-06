@@ -38,5 +38,15 @@
             "lastname": "Szyc"
         },
         "available": true
+    },
+    "4": {
+        "title": "Jak zyc godnie na mostowej 11",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
     }
 }
