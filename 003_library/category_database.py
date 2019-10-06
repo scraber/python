@@ -43,6 +43,8 @@ class CategoryDatabase:
             json.dump(update_db, json_db, indent=4)
 
 
+
+
 db = CategoryDatabase()
 # db.add_category(Category("Cookbook"))
 # db.add_category(Category("Romance"))
@@ -52,5 +54,5 @@ db = CategoryDatabase()
 # db.add_category(Category("Historical"))
 # db.add_category(Category("Biography"))
 # db.add_category(Category("Science"))
-db.add_category(Category("Travel"))
+# db.add_category(Category("Travel"))
 db.save_db()

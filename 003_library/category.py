@@ -2,10 +2,10 @@ import itertools
 
 
 class Category:
-    id_iter = itertools.count()
+    __id_iter = itertools.count()
 
     def __init__(self, category: str):
-        self.id = next(self.id_iter)
+        self.id = next(self.__id_iter)
         self.category = category
 
     def __str__(self):

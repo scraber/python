@@ -1,5 +1,5 @@
 {
-    "1": {
+    "0": {
         "title": "The Three Musketeers",
         "isbn": 54734534756,
         "category": "Thriller",
@@ -9,7 +9,7 @@
         },
         "available": true
     },
-    "2": {
+    "1": {
         "title": "Life of Pi",
         "isbn": 235264563563,
         "category": "Drama",
@@ -19,7 +19,7 @@
         },
         "available": true
     },
-    "3": {
+    "2": {
         "title": "V for Vendetta",
         "isbn": 849837498,
         "category": "Thriller",
@@ -29,58 +29,8 @@
         },
         "available": true
     },
-    "4": {
-        "title": "Ciezko zyc w surgu tak jak dzis",
-        "isbn": 534635345,
-        "category": "SciFi",
-        "author": {
-            "firstname": "Borys",
-            "lastname": "Szyc"
-        },
-        "available": true
-    },
-    "13": {
-        "title": "Na mostowej wcale nie jest kolorowo",
-        "isbn": 534635345,
-        "category": "SciFi",
-        "author": {
-            "firstname": "Borys",
-            "lastname": "Szyc"
-        },
-        "available": true
-    },
-    "20": {
-        "title": "Piateczek Piatunio",
-        "isbn": 534635345,
-        "category": "SciFi",
-        "author": {
-            "firstname": "Borys",
-            "lastname": "Szyc"
-        },
-        "available": true
-    },
-    "17": {
-        "title": "Quo Vadis Surgi",
-        "isbn": 152312,
-        "category": "Fantasy",
-        "author": {
-            "firstname": "Fizlojolf",
-            "lastname": "Okulus"
-        },
-        "available": true
-    },
-    "14": {
-        "title": "Et tu srurgi?",
-        "isbn": 534635345,
-        "category": "SciFi",
-        "author": {
-            "firstname": "Borys",
-            "lastname": "Szyc"
-        },
-        "available": true
-    },
-    "15": {
-        "title": "Oby sie nie zjebalo",
+    "3": {
+        "title": "Jak zyc godnie w surgu",
         "isbn": 534635345,
         "category": "SciFi",
         "author": {

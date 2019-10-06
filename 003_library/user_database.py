@@ -13,7 +13,7 @@ class UserDatabase:
             with open(db_filename) as json_db:
                 data = json.load(json_db)
             for uid in data:
-                self.users[int(uid)] = User(uid, data[uid]["firstname"], data[uid]["lastname"])
+                self.users[int(uid)] = User(data[uid]["firstname"], data[uid]["lastname"])
         except ValueError:
             logging.error("Couldn't parse %s", db_filename)
         except FileNotFoundError:
@@ -49,8 +49,8 @@ class UserDatabase:
         return user_list
 
 
-test = UserDatabase()
-test.add_user(User(1, "Maciej", "Rek"))
-test.add_user(User(2, "Marcin", "Przepiorkowski"))
-test.add_user(User(1, "Maciej", "Rek"))
-test.save_db()
+#test = UserDatabase()
+# test.add_user(User("Maciej", "Rek"))
+# test.add_user(User("Marcin", "Przepiorkowski"))
+# test.add_user(User("Marcin", "Szeryf"))
+#test.save_db()

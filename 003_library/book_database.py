@@ -13,7 +13,8 @@ class BookDatabase:
             with open(db_filename) as json_db:
                 data = json.load(json_db)
             for uid in data:
-                self.books[int(uid)] = Book(uid, data[uid]["title"], Category(data[uid]["category"]), data[uid]["isbn"],
+                test = data[uid]["category"]
+                self.books[int(uid)] = Book(data[uid]["title"], data[uid]["category"], data[uid]["isbn"],
                                             Author(data[uid]["author"]["firstname"], data[uid]["author"]["lastname"]),
                                             data[uid]["available"])
         except ValueError:
@@ -47,7 +48,7 @@ class BookDatabase:
 
         for uid in self.books:
             book = self.books.get(uid)
-            if category == book.category.__str__():
+            if category == book.category:
                 book_list.append(book.__str__())
 
         return book_list
@@ -62,3 +63,10 @@ class BookDatabase:
             book_list.append(tostrbook)
 
         return book_list
+
+
+# u = BookDatabase()
+# u.add_book(Book("The Three Musketeers", "Thriller", 54734534756, Author("Alexandre", "Dumas")))
+# u.add_book(Book("Life of Pi", "Drama", 235264563563, Author("Yann", "Martel")))
+# u.add_book(Book("V for Vendetta", "Thriller", 849837498, Author("Alan", "Moore")))
+# u.save_db()

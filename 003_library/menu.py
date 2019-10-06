@@ -104,7 +104,7 @@ def add_book(stdscr):
     # new_book_category = Category(new_cat, )
     # new_book = Book(new_book_id, new_book_title, Category(new_book_category, new_book_category_id), new_book_isbn,
     #             Author(new_book_author_first, new_book_author_last))
-    new_book = Book(int(console_input(stdscr, "Id")), str(console_input(stdscr, "Title")), Category("SciFi"),
+    new_book = Book(str(console_input(stdscr, "Title")), "SciFi",
                     534635345, Author("Borys", "Szyc"), True)
     books.add_book(new_book)
     books.save_db()

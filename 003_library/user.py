@@ -1,7 +1,11 @@
-class User:
+import itertools
 
-    def __init__(self, uid: int, firstname: str, lastname: str):
-        self.uid = uid
+
+class User:
+    __id_iter = itertools.count()
+
+    def __init__(self, firstname: str, lastname: str):
+        self.uid = next(self.__id_iter)
         self.firstname = firstname
         self.lastname = lastname
 
