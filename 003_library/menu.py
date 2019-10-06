@@ -1,6 +1,6 @@
 import curses
 from user_database import UserDatabase
-from book_database import BookDatabase, Book, Category, Author
+from book_database import BookDatabase, Book, Author, Category
 
 users = UserDatabase()
 books = BookDatabase()
@@ -104,7 +104,8 @@ def add_book(stdscr):
     # new_book_category = Category(new_cat, )
     # new_book = Book(new_book_id, new_book_title, Category(new_book_category, new_book_category_id), new_book_isbn,
     #             Author(new_book_author_first, new_book_author_last))
-    new_book = Book(4, str(console_input(stdscr, "Title")), Category("SciFi", 2), 534635345, Author("Borys", "Szyc"))
+    new_book = Book(int(console_input(stdscr, "Id")), str(console_input(stdscr, "Title")), Category("SciFi"),
+                    534635345, Author("Borys", "Szyc"), True)
     books.add_book(new_book)
     books.save_db()
     print_center(stdscr, f"Book '{new_book.title}' added")
@@ -160,6 +161,8 @@ def main(stdscr):
                 break
             else:
                 exit_submenu()
+        elif key == 113:  # q key
+            break
 
         print_menu(menu, stdscr, current_row)
 

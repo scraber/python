@@ -13,10 +13,9 @@ class BookDatabase:
             with open(db_filename) as json_db:
                 data = json.load(json_db)
             for uid in data:
-                self.books[int(uid)] = Book(uid, data[uid]["title"],
-                                            Category(data[uid]["genre"]["category"], data[uid]["genre"]["id"]),
-                                            data[uid]["isbn"],
-                                            Author(data[uid]["author"]["firstname"], data[uid]["author"]["lastname"]))
+                self.books[int(uid)] = Book(uid, data[uid]["title"], Category(data[uid]["category"]), data[uid]["isbn"],
+                                            Author(data[uid]["author"]["firstname"], data[uid]["author"]["lastname"]),
+                                            data[uid]["available"])
         except ValueError:
             logging.error("Cannot parse %s", db_filename)
         except FileNotFoundError:
@@ -48,7 +47,7 @@ class BookDatabase:
 
         for uid in self.books:
             book = self.books.get(uid)
-            if category == book.category.category:
+            if category == book.category.__str__():
                 book_list.append(book.__str__())
 
         return book_list

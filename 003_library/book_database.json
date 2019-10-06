@@ -2,49 +2,91 @@
     "1": {
         "title": "The Three Musketeers",
         "isbn": 54734534756,
-        "genre": {
-            "category": "Historical",
-            "id": 5
-        },
+        "category": "Thriller",
         "author": {
             "firstname": "Alexandre",
             "lastname": "Dumas"
-        }
+        },
+        "available": true
     },
     "2": {
         "title": "Life of Pi",
         "isbn": 235264563563,
-        "genre": {
-            "category": "Biography",
-            "id": 6
-        },
+        "category": "Drama",
         "author": {
             "firstname": "Yann",
             "lastname": "Martel"
-        }
+        },
+        "available": true
     },
     "3": {
         "title": "V for Vendetta",
         "isbn": 849837498,
-        "genre": {
-            "category": "Thriller",
-            "id": 7
-        },
+        "category": "Thriller",
         "author": {
             "firstname": "Alan",
             "lastname": "Moore"
-        }
+        },
+        "available": true
     },
     "4": {
         "title": "Ciezko zyc w surgu tak jak dzis",
         "isbn": 534635345,
-        "genre": {
-            "category": "SciFi",
-            "id": 2
-        },
+        "category": "SciFi",
         "author": {
             "firstname": "Borys",
             "lastname": "Szyc"
-        }
+        },
+        "available": true
+    },
+    "13": {
+        "title": "Na mostowej wcale nie jest kolorowo",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
+    },
+    "20": {
+        "title": "Piateczek Piatunio",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
+    },
+    "17": {
+        "title": "Quo Vadis Surgi",
+        "isbn": 152312,
+        "category": "Fantasy",
+        "author": {
+            "firstname": "Fizlojolf",
+            "lastname": "Okulus"
+        },
+        "available": true
+    },
+    "14": {
+        "title": "Et tu srurgi?",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
+    },
+    "15": {
+        "title": "Oby sie nie zjebalo",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
     }
 }

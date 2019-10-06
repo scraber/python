@@ -1,3 +1,4 @@
+from category import Category
 import json
 import logging
 
@@ -10,32 +11,46 @@ class CategoryDatabase:
 
         try:
             with open(db_filename) as json_db:
-                self.categories = json.load(json_db)
+                data = json.load(json_db)
+            for uid in data:
+                self.categories[int(uid)] = Category(data[uid])
+
         except ValueError:
             logging.error("Cannot parse %s", db_filename)
         except FileNotFoundError:
             logging.warning("Couldn't find %s", db_filename)
 
-    def add_category(self, new_category: str, new_id: int):
-        if new_category not in self.categories:
-            self.categories[new_category] = new_id
-            logging.debug("Added %s category", new_category)
+    def add_category(self, add_new: Category):
+        if add_new not in self.categories:
+            self.categories[add_new.id] = add_new
+            logging.debug("Added %s category", add_new.category)
         else:
-            logging.warning("%s category already exists", new_category)
+            logging.warning("%s category already exists", add_new.category)
 
-    def remove_category(self, remove_category: str):
-        if remove_category in self.categories:
-            del self.categories[remove_category]
-            logging.debug("User %s removed from database", remove_category)
+    def remove_category(self, remove: Category):
+        if remove in self.categories:
+            del self.categories[remove.id]
+            logging.debug("User %s removed from database", remove.category)
         else:
-            logging.warning("User %s doesn't exists!", remove_category)
+            logging.warning("User %s doesn't exists!", remove.category)
 
     def save_db(self, db_filename: str = "category_database.json"):
+        update_db = dict()
+        for uid in self.categories:
+            update_db[uid] = self.categories.get(uid).__str__()
+
         with open(db_filename, 'w') as json_db:
-            json.dump(self.categories, json_db, indent=4)
+            json.dump(update_db, json_db, indent=4)
 
 
-test = CategoryDatabase()
-test.add_category("Romance", 1)
-test.add_category("SciFi", 2)
-test.save_db()
+db = CategoryDatabase()
+# db.add_category(Category("Cookbook"))
+# db.add_category(Category("Romance"))
+# db.add_category(Category("SciFi"))
+# db.add_category(Category("Fantasy"))
+# db.add_category(Category("Crime"))
+# db.add_category(Category("Historical"))
+# db.add_category(Category("Biography"))
+# db.add_category(Category("Science"))
+db.add_category(Category("Travel"))
+db.save_db()
