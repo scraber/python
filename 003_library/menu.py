@@ -132,7 +132,7 @@ class Menu:
                 self.move_selection_down()
             elif key == curses.KEY_ENTER or key in [10, 13]:
                 # print_center(stdscr, "You selected '{}'".format(menu[current_row]))
-                if self.menu_select_entry(self.current_row) == "User":
+                if self.menu_select_entry(self.current_row) == "Users":
                     self.enter_submenu(self.manager.user_db.get_users_list())
                 elif self.menu_select_entry(self.current_row) == "Admin":
                     self.enter_submenu(self.admin_login)
@@ -187,21 +187,9 @@ class Menu:
         stdscr.getch()
 
     def remove_book(self, stdscr):
-        self.enter_submenu(self.manager.book_db.get_book_list())
-        while True:
-            self.print_menu(self.menu, stdscr, self.current_row)
-            key = stdscr.getch()
-            if key == curses.KEY_UP:
-                self.move_selection_up()
-            elif key == curses.KEY_DOWN:
-                self.move_selection_down()
-            elif key == curses.KEY_ENTER or key in [10, 13]:
-                self.manager.book_db.remove()
-                self.exit_submenu()
-                break
-            elif key == 27:
-                self.exit_submenu()
-                break
+        # Tu jeszcze nie mam pomysłu jak wyczarować uid/tytuł ksiażki żeby ją usunąć
+        remove_book = self.submenu_selection(stdscr, self.manager.book_db.get_book_list())
+        self.manager.book_db.remove(int(remove_book.partition(":")[0]))
 
     def view_books_by_selection(self, stdscr):
         self.enter_submenu(self.manager.category_db.get_category_list())

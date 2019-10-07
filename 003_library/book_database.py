@@ -5,6 +5,9 @@ import json
 
 class BookDatabase(AbstractDatabase):
 
+    def remove(self, remove):
+        del self.data[remove]
+
     def load_from_file(self):
         with open(self.db_filename) as json_db:
             data = json.load(json_db)
