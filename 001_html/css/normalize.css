@@ -157,6 +157,98 @@ img {
  * 2. Remove the margin in Firefox and Safari.
  */
 
+/*** Tu je moje ***/
+
+.topbar{
+
+  display: flex;                  /* establish flex container */
+  align-items: center;
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.topbar .imagelogo{
+ margin-top: 10px
+}
+
+.topbar .navigation {
+  list-style: none;
+  margin: 0; 
+  
+  background: transparent;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.navigation a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: black;
+}
+
+.text{                  
+  margin-left : 30%;
+  margin-top: 4%;
+
+}
+
+.text .redline { 
+  position: absolute;
+  font-family: "Courier New";
+  font-size: 10px;
+  /*right: 2%*/
+}
+
+
+.text .boldtext {
+  position: relative;
+  font-family: "Courier New";
+  font-size: 25px;
+  top: 20px;
+}
+
+.bottombar{
+
+  display: flex;                  /* establish flex container */
+  align-items: center;
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  background-color: rgb(220, 220, 220);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottombar .copyright{
+  margin-left: 50px;
+}
+.bottombar .navigation {
+  list-style: none;
+  margin: 0; 
+  
+  background: transparent;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+
+
+
 button,
 input,
 optgroup,
