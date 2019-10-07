@@ -5,7 +5,7 @@ import logging
 
 
 class Rentals:
-    def __init__(self, user_db: UserDatabase, book_db: BookDatabase, db_filename: str = "rentals_history.json"):
+    def __init__(self, user_db: UserDatabase, book_db: BookDatabase, db_filename: str = "json/rentals_history.json"):
         logging.basicConfig(level=logging.DEBUG)
 
         self.rentals = {"users": {str(user_db.data[idx].uid): list() for idx in user_db.data},

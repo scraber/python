@@ -9,9 +9,9 @@ class LibraryManager:
 
     def __init__(self):
         logging.basicConfig(level=logging.DEBUG)
-        self.book_db = BookDatabase("book_database.json")
-        self.category_db = CategoryDatabase("category_database.json")
-        self.user_db = UserDatabase("user_database.json")
+        self.book_db = BookDatabase("json/book_database.json")
+        self.category_db = CategoryDatabase("json/category_database.json")
+        self.user_db = UserDatabase("json/user_database.json")
         self.rental = Rentals(self.user_db, self.book_db)
         self.book_limit = 5
 
