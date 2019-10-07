@@ -24,10 +24,18 @@ class LibraryManager:
 
     def rent_book(self, user: User, book: Book):
         if self.book_limit > self.rental.count_currently_owning(user, self.book_db):
-            self.rental.rent_book(user, book, self.book_db)
+            self.rental.rent_book(user, book)
             logging.debug("User %s rent book %s", user.__str__(), book.title)
         else:
             logging.warning("User %s already at max book limit of %d", user.__str__(), self.book_limit)
+        # self.rental.save_db()
+        # self.book_db.save_db()
+
+    def return_book(self, user: User, book: Book):
+        self.rental.return_book(book)
+        # self.rental.save_db()
+        # self.book_db.save_db()
+
 
     def add_user(self, new_user: User):
         if not self.check_if_exists(new_user, self.user_db.data):
@@ -68,7 +76,7 @@ class LibraryManager:
             logging.debug("Added %s book to database", new_book.title)
         else:
             logging.warning("Book %s already exists in database!", new_book.title)
-            # self.book_db.save_db()
+         # self.book_db.save_db()
 
     def remove_book(self, old_book: Book):
         if self.check_if_exists(old_book, self.book_db.data):
@@ -79,10 +87,10 @@ class LibraryManager:
         # self.book_db.save_db()
 
 
-test = LibraryManager()
-usr = test.user_db.get_by_name("Maciej Rek")
-book = test.book_db.get_by_name("The Three Musketeers")
-test.remove_book(book)
-test.add_book(book)
-test.rent_book(usr, book)
-print(test)
+# test = LibraryManager()
+# usr = test.user_db.get_by_name("Maciej Rek")
+# book = test.book_db.get_by_name("The Three Musketeers")
+# test.remove_book(book)
+# test.add_book(book)
+# test.rent_book(usr, book)
+# print(test)

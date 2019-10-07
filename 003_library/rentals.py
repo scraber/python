@@ -19,10 +19,9 @@ class Rentals:
         except FileNotFoundError:
             logging.warning("Couldn't find %s", db_filename)
 
-    def rent_book(self, user: User, book: Book, book_db: BookDatabase):
+    def rent_book(self, user: User, book: Book):
         self.rentals.get("users").get(str(user.uid)).append(book.uid)
         self.rentals.get("books").get(str(book.uid)).append(user.uid)
-        book = book_db.get_by_name(book.title)
         book.currently_owning = user.__str__("admin")
         book.available = False
 

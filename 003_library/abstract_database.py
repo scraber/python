@@ -24,7 +24,7 @@ class AbstractDatabase(ABC):
     def add(self, add_new):
         self.data[add_new.uid] = add_new
 
-    def remove_category(self, remove):
+    def remove(self, remove):
         del self.data[remove.uid]
 
     def save_db(self):

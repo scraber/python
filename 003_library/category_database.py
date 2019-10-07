@@ -11,6 +11,14 @@ class CategoryDatabase(AbstractDatabase):
         for uid in data:
             self.data[int(uid)] = Category(data[uid])
 
+    def get_category_list(self):
+        category_list = list()
+
+        for uid in self.data:
+            category_list.append(self.data.get(uid).get_name())
+
+        return category_list
+
 #
 # db = CategoryDatabase("category_database.json")
 # db.add(Category("Cookbook"))
