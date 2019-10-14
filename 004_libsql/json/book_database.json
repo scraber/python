@@ -1,0 +1,52 @@
+{
+    "0": {
+        "title": "The Three Musketeers",
+        "isbn": 54734534756,
+        "category": "Thriller",
+        "author": {
+            "firstname": "Alexandre",
+            "lastname": "Dumas"
+        },
+        "available": true
+    },
+    "1": {
+        "title": "Life of Pi",
+        "isbn": 235264563563,
+        "category": "Drama",
+        "author": {
+            "firstname": "Yann",
+            "lastname": "Martel"
+        },
+        "available": true
+    },
+    "2": {
+        "title": "V for Vendetta",
+        "isbn": 849837498,
+        "category": "Thriller",
+        "author": {
+            "firstname": "Alan",
+            "lastname": "Moore"
+        },
+        "available": true
+    },
+    "3": {
+        "title": "Ciezkie zycie w surgu",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
+    },
+    "4": {
+        "title": "Jak zyc godnie na mostowej 11",
+        "isbn": 534635345,
+        "category": "SciFi",
+        "author": {
+            "firstname": "Borys",
+            "lastname": "Szyc"
+        },
+        "available": true
+    }
+}
