@@ -1,13 +1,12 @@
-from category import Category
-from author import Author
+from basic.author import Author
 import itertools
 
 
 class Book:
     __id_iter = itertools.count()
 
-    def __init__(self, title: str, category: str, isbn: int, author: Author, available: bool = True):
-        self.uid = next(self.__id_iter)
+    def __init__(self, uid: int, title: str, category: str, isbn: int, author: Author, available: bool = True):
+        self.uid = uid
         self.title = title
         self.category = category
         self.isbn = isbn
@@ -19,10 +18,7 @@ class Book:
         return f"{self.uid}: {self.title} by Author: {self.author.__str__()}, Category: {self.category}, ISBN: {self.isbn}, Available: {self.available}"
 
     def __eq__(self, other):
-        if self.title == other.title and self.isbn == other.isbn and self.author == other.author:
-            return True
-        else:
-            return False
+        return self.title == other.title and self.isbn == other.isbn and self.author == other.author
 
     def get_name(self):
         return f"{self.title}"

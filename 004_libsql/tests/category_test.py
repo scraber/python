@@ -1,4 +1,4 @@
-from category import Category
+from basic.category import Category
 import unittest
 
 

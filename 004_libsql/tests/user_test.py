@@ -1,4 +1,4 @@
-from user import User
+from basic.user import User
 import unittest
 
 

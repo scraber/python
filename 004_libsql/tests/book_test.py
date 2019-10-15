@@ -1,5 +1,5 @@
-from book import Book
-from author import Author
+from basic.book import Book
+from basic.author import Author
 import unittest
 
 

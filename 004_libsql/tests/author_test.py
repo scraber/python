@@ -1,4 +1,4 @@
-from author import Author
+from basic.author import Author
 import unittest
 
 class TestAuthor(unittest.TestCase):

@@ -88,6 +88,11 @@ class Database:
         self.execute(f"UPDATE history SET returned = True WHERE id_user = {id_user} AND  id_book = {id_book}")
         self.mydb.commit()
 
+    def select_specific_fields(self, table: str, *args):
+        fields = ",".join(args)
+        self.execute(f"SELECT {fields} FROM {table}")
+        return self.response()
+
     def select_by_id(self, table: str, idx: int):
         self.execute(f"SELECT * FROM {table} where id = {idx}")
         return self.single_response()
