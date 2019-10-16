@@ -16,7 +16,7 @@ class LibraryManager:
         self.authorDB = AuthorDatabase(self.libDB)
         self.userDB = UserDatabase(self.libDB)
         self.categoryDB = CategoryDatabase(self.libDB)
-        self.borrowHist = BorrowHistory(self.libDB)
+        self.historyDB = BorrowHistory(self.libDB)
 
     def get_all_books(self):
         book_list = list()
@@ -35,6 +35,26 @@ class LibraryManager:
             author = self.authorDB.get_author_by_id(id_author)
             book_list.append(Book(uid, title, category, isbn, author))
         return book_list
+
+    def get_available_books(self):
+        book_list = list()
+        for response in self.bookDB.get_all_available():
+            uid, title, id_category, isbn, id_author = response
+            category = self.categoryDB.get_category_by_id(id_category)
+            author = self.authorDB.get_author_by_id(id_author)
+            book_list.append(Book(uid, title, category, isbn, author))
+        return book_list
+
+
+    def get_whole_book_history(self):
+        history_list = list()
+        for response in self.historyDB.get_all():
+            _, id_user, id_book, borrow_date, returned = response
+            _, firstname, lastname, _ = self.userDB.get_user_by_id(id_user)
+            _, title, _, isbn, _ = self.bookDB.get_book_by_id(id_book)
+            history_list.append(
+                f"User: {firstname} {lastname} borrowed book '{title}' isbn: {isbn} at: {borrow_date}, returned: {bool(returned)}")
+        return history_list
 
 # test = LibraryManager("localhost", "root")
 #

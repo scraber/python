@@ -9,7 +9,7 @@ class CategoryDatabase:
     def add_category(self, name: str):
         self.database.add_entry("category", name)
 
-    def remove_category(self, id_category):
+    def remove_category(self, id_category: int):
         self.database.remove_entry("category", id_category)
 
     def get_category_specific_fields(self, *args):
@@ -22,6 +22,6 @@ class CategoryDatabase:
     def get_all_categories(self):
         category_list = list()
         for response in self.database.select_all("category"):
-            id, name = response
-            category_list.append(Category(id, name))
+            uid, name = response
+            category_list.append(Category(uid, name))
         return category_list

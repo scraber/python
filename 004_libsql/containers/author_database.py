@@ -1,3 +1,6 @@
+from basic.author import Author
+
+
 class AuthorDatabase:
 
     def __init__(self, database):
@@ -6,7 +9,7 @@ class AuthorDatabase:
     def add_author(self, firstname: str, lastname: str):
         self.database.add_entry("author", firstname, lastname)
 
-    def remove_author(self, id_author):
+    def remove_author(self, id_author:int):
         self.database.remove_entry("author", id_author)
 
     def get_author_specific_fields(self, *args):
@@ -17,4 +20,8 @@ class AuthorDatabase:
         return f"{firstname} {lastname}"
 
     def get_all_authors(self):
-        return self.database.select_all("author")
+        author_list = list()
+        for response in self.database.select_all("author"):
+            uid, firstname, lastname = response
+            author_list.append(Author(uid, firstname, lastname))
+        return author_list

@@ -6,7 +6,7 @@ class BookDatabase:
     def add_book(self, title: str, id_category: int, isbn: int, id_author: int):
         self.database.add_entry("book", title, id_category, isbn, id_author)
 
-    def remove_book(self, id_author):
+    def remove_book(self, id_author: int):
         self.database.remove_entry("book", id_author)
 
     def get_book_specific_fields(self, *args):
@@ -18,6 +18,10 @@ class BookDatabase:
     def get_all(self):
         return self.database.select_all("book")
 
-    def get_by_category(self, idx):
+    def get_by_category(self, idx: int):
         self.database.execute(f"SELECT * FROM book where id_category = {idx}")
+        return self.database.response()
+
+    def get_all_available(self):
+        self.database.execute(f"SELECT * FROM book where id IN (SELECT id_book from history where returned = True)")
         return self.database.response()

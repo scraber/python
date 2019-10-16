@@ -24,14 +24,14 @@ class UserDatabase:
     def get_all_users(self):
         user_list = list()
         for response in self.database.select_all("user"):
-            id, firstname, lastname, _ = response
-            user_list.append(User(id, firstname, lastname))
+            uid, firstname, lastname, _ = response
+            user_list.append(User(uid, firstname, lastname))
         return user_list
 
-    def get_all_users_by_activity(self, is_active:bool):
+    def get_all_users_by_activity(self, is_active: bool):
         user_list = list()
         self.database.execute(f"SELECT * FROM user where active = {is_active}")
         for response in self.database.response():
-            id, firstname, lastname, _ = response
-            user_list.append(User(id, firstname, lastname))
+            uid, firstname, lastname, _ = response
+            user_list.append(User(uid, firstname, lastname))
         return user_list
