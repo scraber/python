@@ -7,7 +7,8 @@ import logging
 class Database:
 
     def __init__(self, host: str, user: str, database_name: str):
-        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
+        logging.basicConfig(level=logging.DEBUG,
+                            format='%(asctime)s %(levelname)s:%(message)s')
         self.host = host
         self.user = user
         self.passwd = None
@@ -62,12 +63,14 @@ class Database:
 
     def add_entry(self, table: str, *args):
         if "author" == table or "user" == table:
-            self.execute(f"INSERT INTO {table} (firstname, lastname) VALUES {args}")
+            self.execute(
+                f"INSERT INTO {table} (firstname, lastname) VALUES {args}")
         elif "category" == table:
             local, = args
             self.execute(f"INSERT INTO {table} (name) VALUES ('{local}')")
         elif "book" == table:
-            self.execute(f"INSERT INTO {table} (title, id_category, isbn, id_author) VALUES {args}")
+            self.execute(
+                f"INSERT INTO {table} (title, id_category, isbn, id_author) VALUES {args}")
         elif "history" == table:
             id_user, id_book = args
             self.execute(
@@ -85,7 +88,8 @@ class Database:
         self.mydb.commit()
 
     def update_history_returned(self, id_user, id_book):
-        self.execute(f"UPDATE history SET returned = True WHERE id_user = {id_user} AND  id_book = {id_book}")
+        self.execute(
+            f"UPDATE history SET returned = True WHERE id_user = {id_user} AND  id_book = {id_book}")
         self.mydb.commit()
 
     def select_specific_fields(self, table: str, *args):

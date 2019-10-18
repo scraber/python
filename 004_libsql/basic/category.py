@@ -9,7 +9,7 @@ class Category:
         self.name = name
 
     def __str__(self):
-        return f"{self.uid}: {self.name}"
+        return f"{self.name}"
 
     def __eq__(self, other):
         return self.name == other.name

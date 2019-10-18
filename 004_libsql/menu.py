@@ -105,13 +105,21 @@ class Menu:
             key = input(">> ")
             if '1' == key:
                 book_list = self.manager.get_available_books()
+                book_list.append("0: Return")
                 self.enter_submenu(book_list)
                 id_book = input(">> ")
-                self.manager.historyDB.borrow_book(id_user, id_book)
-                input(">> ")
+                if '0' != id_book:
+                    self.manager.historyDB.borrow_book(id_user, id_book)
+                    input(">> ")
                 self.exit_submenu()
             elif '2' == key:
-                input(">> ")
+                book_list = self.manager.get_available_books()
+                book_list.append("0: Return")
+                self.enter_submenu(book_list)
+                id_book = input(">> ")
+                if '0' != id_book:
+                    self.manager.historyDB.return_book(id_user, id_book)
+                    input(">> ")
                 self.exit_submenu()
             elif '0' == key:
                 self.exit_submenu()

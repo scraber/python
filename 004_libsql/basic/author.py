@@ -10,4 +10,4 @@ class Author:
         return self.firstname == other.firstname and self.lastname == other.lastname
 
     def __str__(self):
-        return f"{self.uid}: {self.fullname}"
+        return f"{self.fullname}"

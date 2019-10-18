@@ -1,0 +1,22 @@
+{% extends "layout.html"%} {% block content %}
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.uid }}</td>
+            <td>{{ author.firstname }}</td>
+            <td>{{ author.lastname }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
