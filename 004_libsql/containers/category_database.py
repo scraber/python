@@ -29,3 +29,6 @@ class CategoryDatabase:
             uid, name = response
             category_list.append(Category(uid, name))
         return category_list
+
+    def get_categories_selection(self):
+        return self.database.select_all("category")

@@ -1,4 +1,4 @@
-{% extends "layout.html"%} {% block manage %}
+{% extends "layout.html"%} {% block addmodal %}
 <div class="content-section">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
@@ -31,10 +31,13 @@
                 {% endif %}
             </div>
         </fieldset>
+        <div class="form-group">
+            {{form.submit(class="btn btn-outline-info")}}
+        </div>
     </form>
 </div>
 
-{% endblock manage %} {% block content %}
+{% endblock addmodal %} {% block content %}
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>

@@ -30,3 +30,10 @@ class AuthorDatabase:
             uid, firstname, lastname = response
             author_list.append(Author(uid, firstname, lastname))
         return author_list
+
+    def get_authors_selection(self):
+        authors_list = list()
+        for response in self.database.select_all("author"):
+            uid, firstname, lastname = response
+            authors_list.append((uid, f"{firstname} {lastname}"))
+        return authors_list
