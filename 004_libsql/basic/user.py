@@ -1,9 +1,4 @@
-import itertools
-
-
 class User:
-    __id_iter = itertools.count()
-
     def __init__(self, uid: int, firstname: str, lastname: str, active: bool = True):
         self.uid = uid
         self.firstname = firstname

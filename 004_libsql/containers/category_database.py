@@ -2,7 +2,6 @@ from basic.category import Category
 
 
 class CategoryDatabase:
-
     def __init__(self, database):
         self.database = database
 
@@ -14,10 +13,6 @@ class CategoryDatabase:
 
     def get_category_specific_fields(self, *args):
         return self.database.select_specific_fields("category", *args)
-
-    # def get_category_by_id(self, idx: int):
-    #     _, name = self.database.select_by_id("category", idx)
-    #     return f"{name}"
 
     def get_category_by_id(self, idx: int):
         uid, name = self.database.select_by_id("category", idx)

@@ -1,6 +1,5 @@
 import mysql.connector
 import sys
-import getpass
 import logging
 
 
@@ -74,7 +73,8 @@ class Database:
         elif "history" == table:
             id_user, id_book = args
             self.execute(
-                f"INSERT INTO {table} (id_user, id_book, borrow_date,returned) VALUES ({id_user}, {id_book}, (SELECT CURDATE()), False)")
+                f"INSERT INTO {table} (id_user, id_book, borrow_date,returned) VALUES ({id_user}, {id_book}, (SELECT "
+                f"CURDATE()), False)")
         self.mydb.commit()
         logging.debug(f"Added {args} to {table}")
 

@@ -1,5 +1,4 @@
 class Author:
-
     def __init__(self, uid: int, firstname: str, lastname: str):
         self.uid = uid
         self.firstname = firstname

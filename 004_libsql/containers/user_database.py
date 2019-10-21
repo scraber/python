@@ -2,7 +2,6 @@ from basic.user import User
 
 
 class UserDatabase:
-
     def __init__(self, database):
         self.database = database
 
@@ -19,14 +18,16 @@ class UserDatabase:
         return self.database.select_specific_fields("user", *args)
 
     def get_user_by_id(self, idx: int):
-        uid, firstname, lastname, active = self.database.select_by_id("user", idx)
-        return User(uid, firstname, lastname, active)
+        uid, firstname, lastname, active = self.database.select_by_id(
+            "user", idx
+        )
+        return User(uid, firstname, lastname, bool(active))
 
     def get_all_users(self):
         user_list = list()
         for response in self.database.select_all("user"):
-            uid, firstname, lastname, _ = response
-            user_list.append(User(uid, firstname, lastname))
+            uid, firstname, lastname, active = response
+            user_list.append(User(uid, firstname, lastname, bool(active)))
         return user_list
 
     def get_all_users_by_activity(self, is_active: bool):

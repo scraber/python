@@ -2,7 +2,6 @@ from basic.author import Author
 
 
 class AuthorDatabase:
-
     def __init__(self, database):
         self.database = database
 
