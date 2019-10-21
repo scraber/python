@@ -19,7 +19,8 @@ class UserDatabase:
         return self.database.select_specific_fields("user", *args)
 
     def get_user_by_id(self, idx: int):
-        return self.database.select_by_id("user", idx)
+        uid, firstname, lastname, active = self.database.select_by_id("user", idx)
+        return User(uid, firstname, lastname, active)
 
     def get_all_users(self):
         user_list = list()
@@ -34,4 +35,11 @@ class UserDatabase:
         for response in self.database.response():
             uid, firstname, lastname, _ = response
             user_list.append(User(uid, firstname, lastname))
+        return user_list
+
+    def get_users_selection(self):
+        user_list = list()
+        for response in self.database.select_all("user"):
+            uid, firstname, lastname, _ = response
+            user_list.append((uid, f"{firstname} {lastname}"))
         return user_list

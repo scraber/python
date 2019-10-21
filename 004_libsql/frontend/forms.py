@@ -34,3 +34,20 @@ class AddBookForm(FlaskForm, ):
     submit = SubmitField('Add')
 
 
+class RemoveUserForm(FlaskForm):
+    fullname = SelectField('Fullname', coerce=int, choices=[])
+    submit = SubmitField('Remove')
+
+
+class RemoveAuthorForm(FlaskForm):
+    fullname = SelectField('Fullname', coerce=int, choices=[])
+    submit = SubmitField('Remove')
+
+class RemoveCategoryForm(FlaskForm):
+    name = SelectField('Name', coerce=int, choices=[])
+    submit = SubmitField('Remove')
+
+
+class RemoveBookForm(FlaskForm, ):
+    book = SelectField('Book', coerce=int, choices=[])
+    submit = SubmitField('Remove')

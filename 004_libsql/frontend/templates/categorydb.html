@@ -1,25 +1,25 @@
 {% extends "layout.html"%}  {% block addmodal %}
 <div class="content-section">
     <form method="POST" action="">
-        {{ form.hidden_tag() }}
+        {{ addform.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Category</legend>
             <div class="form-group">
-                {{ form.name.label(class="form-control-label") }}
-                {% if form.name.errors %}
-                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                {{ addform.name.label(class="form-control-label") }}
+                {% if addform.name.errors %}
+                {{ addform.name(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
-                    {% for error in form.name.errors %}
+                    {% for error in addform.name.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                {{ form.name(class="form-control form-control-lg") }}
+                {{ addform.name(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         </fieldset>
         <div class="form-group">
-            {{form.submit(class="btn btn-outline-success")}}
+            {{addform.submit(class="btn btn-outline-success")}}
         </div>
     </form>
 </div>

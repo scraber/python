@@ -1,43 +1,74 @@
 {% extends "layout.html"%} {% block addmodal %}
 <div class="content-section">
     <form method="POST" action="">
-        {{ form.hidden_tag() }}
+        {{ addform.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">User</legend>
             <div class="form-group">
-                {{ form.firstname.label(class="form-control-label") }}
-                {% if form.firstname.errors %}
-                {{ form.firstname(class="form-control form-control-lg is-invalid") }}
+                {{ addform.firstname.label(class="form-control-label") }}
+                {% if addform.firstname.errors %}
+                {{ addform.firstname(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
-                    {% for error in form.firstname.errors %}
+                    {% for error in addform.firstname.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                {{ form.firstname(class="form-control form-control-lg") }}
+                {{ addform.firstname(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.lastname.label(class="form-control-label") }}
-                {% if form.lastname.errors %}
-                {{ form.lastname(class="form-control form-control-lg is-invalid") }}
+                {{ addform.lastname.label(class="form-control-label") }}
+                {% if addform.lastname.errors %}
+                {{ addform.lastname(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
-                    {% for error in form.lastname.errors %}
+                    {% for error in addform.lastname.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                {{ form.lastname(class="form-control form-control-lg") }}
+                {{ addform.lastname(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         </fieldset>
         <div class="form-group">
-            {{form.submit(class="btn btn-outline-info")}}
+            {{addform.submit(class="btn btn-outline-info")}}
         </div>
     </form>
 </div>
 
-{% endblock addmodal %} {% block content %}
+{% endblock addmodal %}
+
+{% block removemodal %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ removeform.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">User</legend>
+            <div class="form-group">
+                {{ removeform.fullname.label(class="form-control-label") }}
+                {% if removeform.fullname.errors %}
+                {{ removeform.fullname(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in removeform.fullname.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ removeform.fullname(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{removeform.submit(class="btn btn btn-outline-danger")}}
+        </div>
+    </form>
+</div>
+
+{% endblock removemodal %}
+
+
+{% block content %}
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
