@@ -81,23 +81,28 @@
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
             <td>
+
+
                 {% if user.active is sameas true %}
-                <a
-                        type="button"
-                        href="/deactivate?uid={{user.uid}}"
-                        class="btn btn-success"
-                >
-                     Active
-                </a>
+                <form action="/deactivate/{{user.uid}}" method="post">
+                    <button
+                            type="submit"
+                            class="btn btn-success"
+                            value="{{user.uid}}"
+                    >
+                        Active
+                    </button>
+                </form>
                 {% else %}
-                <a
-                        type="button"
-                        href="/activate?uid={{user.uid}}"
-                        class="btn btn-danger"
-                >
-                    Inactive
-                </a>
-                {% endif %}
+                <form action="/activate/{{user.uid}}" method="post">
+                    <button
+                            type="submit"
+                            class="btn btn-danger"
+                            value="{{user.uid}}"
+                    >
+                        Inactive
+                    </button>
+                    {% endif %}
             </td>
         </tr>
         {% endfor %}

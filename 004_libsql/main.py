@@ -36,43 +36,34 @@ def userdb():
                            removeform=remove)
 
 
-@app.route("/activate", methods=["GET"])
-def activate():
-    uid = request.args.get("uid")
-    db.libDB.update_user_active(escape(uid), True)
+@app.route("/activate/<uid>", methods=["POST"])
+def activate(uid=None):
+    db.libDB.update_user_active(int(uid), True)
     return redirect(url_for("userdb"))
 
 
-@app.route("/deactivate", methods=["GET"])
-def deactivate():
-    uid = request.args.get("uid")
-    db.libDB.update_user_active(escape(uid), False)
+@app.route("/deactivate/<uid>", methods=["POST"])
+def deactivate(uid=None):
+    db.libDB.update_user_active(int(uid), False)
     return redirect(url_for("userdb"))
 
 
 @app.route("/sort_by_categories", methods=["GET"])
 def sort_by_categories():
     category = int(request.args.get("category"))
-    add = AddBookForm(request.form)
-    remove = RemoveBookForm(request.form)
-    add.category.choices = db.categoryDB.get_categories_selection()
-    add.author.choices = db.authorDB.get_authors_selection()
-    remove.book.choices = db.get_all_books_selection()
-    if add.validate_on_submit():
-        db.bookDB.add_book(add.title.data, add.category.data, add.isbn.data, add.author.data)
-        flash(f"Book {add.title.data} {add.isbn.data} added", "success")
-        return redirect(url_for("bookdb"))
-    if remove.validate_on_submit():
-        book = db.get_book_by_id(remove.book.data)
-        db.bookDB.remove_book(book.uid)
-        flash(f"Book {book} removed", "warning")
-    return render_template("bookdb.html", menu_name="Book Database", books=db.get_all_books_by_category(category),
-                           addform=add,
-                           removeform=remove, categories=db.categoryDB.get_all_categories())
+    if 0 == category:
+        category = None
+    return redirect(url_for('bookdb', filter=category))
 
 
 @app.route("/bookdb", methods=["GET", "POST"])
 def bookdb():
+    filter = request.args.get("filter")
+    if None is filter:
+        book_list = db.get_all_books()
+    else:
+        book_list = db.get_all_books_by_category(filter)
+        filter = db.categoryDB.get_category_by_id(filter)
     add = AddBookForm(request.form)
     remove = RemoveBookForm(request.form)
     add.category.choices = db.categoryDB.get_categories_selection()
@@ -86,8 +77,9 @@ def bookdb():
         book = db.get_book_by_id(remove.book.data)
         db.bookDB.remove_book(book.uid)
         flash(f"Book {book} removed", "warning")
-    return render_template("bookdb.html", menu_name="Book Database", books=db.get_all_books(), addform=add,
-                           removeform=remove, categories=db.categoryDB.get_all_categories())
+    return render_template("bookdb.html", menu_name="Book Database", books=book_list, addform=add,
+                           removeform=remove, categories=db.categoryDB.get_all_categories(),
+                           filter=filter)
 
 
 @app.route("/categorydb", methods=["GET", "POST"])
