@@ -36,13 +36,13 @@ def userdb():
                            removeform=remove)
 
 
-@app.route("/activate/<uid>", methods=["POST"])
+@app.route("/userdb/activate/<uid>", methods=["POST"])
 def activate(uid=None):
     db.libDB.update_user_active(int(uid), True)
     return redirect(url_for("userdb"))
 
 
-@app.route("/deactivate/<uid>", methods=["POST"])
+@app.route("/userdb/deactivate/<uid>", methods=["POST"])
 def deactivate(uid=None):
     db.libDB.update_user_active(int(uid), False)
     return redirect(url_for("userdb"))
@@ -50,20 +50,21 @@ def deactivate(uid=None):
 
 @app.route("/sort_by_categories", methods=["GET"])
 def sort_by_categories():
-    category = int(request.args.get("category"))
-    if 0 == category:
-        category = None
-    return redirect(url_for('bookdb', filter=category))
+    id_category = int(request.args.get("category"))
+    if 0 == id_category:
+        id_category = None
+    return redirect(url_for('bookdb', category=id_category))
 
 
 @app.route("/bookdb", methods=["GET", "POST"])
 def bookdb():
-    filter = request.args.get("filter")
-    if None is filter:
+    id_category = request.args.get("category")
+    if None is id_category:
         book_list = db.get_all_books()
+        category = None
     else:
-        book_list = db.get_all_books_by_category(filter)
-        filter = db.categoryDB.get_category_by_id(filter)
+        book_list = db.get_all_books_by_category(id_category)
+        category = db.categoryDB.get_category_by_id(id_category)
     add = AddBookForm(request.form)
     remove = RemoveBookForm(request.form)
     add.category.choices = db.categoryDB.get_categories_selection()
@@ -79,7 +80,7 @@ def bookdb():
         flash(f"Book {book} removed", "warning")
     return render_template("bookdb.html", menu_name="Book Database", books=book_list, addform=add,
                            removeform=remove, categories=db.categoryDB.get_all_categories(),
-                           filter=filter)
+                           category=category)
 
 
 @app.route("/categorydb", methods=["GET", "POST"])
@@ -124,8 +125,32 @@ def authordb():
                            addform=add, removeform=remove)
 
 
+@app.route("/return_book/<uid_user>/<uid_book>", methods=["POST"])
+def return_book(uid_user=None, uid_book=None):
+    db.historyDB.return_book(uid_user, uid_book)
+    return redirect(url_for("history"))
+
+
+@app.route("/borrow_book")
+def borrow_book():
+    db.libDB.mydb.commit()
+    return render_template("borrow.html", menu_name="Borrow Book", users=db.userDB.get_all_users_by_activity(True))
+
+
+@app.route("/borrow_book/<uid_user>", methods=["POST"])
+def borrow_book_user(uid_user=None):
+    return render_template("borrow.html", menu_name="Borrow Book", books=db.get_available_books(), user=uid_user)
+
+
+@app.route("/borrow_book/<uid_user>/<uid_book>", methods=["POST"])
+def borrow_book_user_book(uid_user=None, uid_book=None):
+    db.historyDB.borrow_book(uid_user, uid_book)
+    return redirect(url_for("history"))
+
+
 @app.route("/history")
 def history():
+    db.libDB.mydb.commit()
     return render_template("history.html", menu_name="Borrow History", history=db.get_whole_book_history())
 
 

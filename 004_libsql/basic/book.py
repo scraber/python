@@ -13,7 +13,7 @@ class Book:
         self.author = author
 
     def __str__(self):
-        return f"{self.title} by Author: {self.author}, ISBN: {self.isbn}"
+        return f'"{self.title}" by Author: {self.author}, ISBN: {self.isbn}'
 
     def __eq__(self, other):
         return (

@@ -1,0 +1,79 @@
+{% extends "layout.html"%} {% block content %}
+
+{% if users %}
+<h1 class="h4">Select User</h1>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Selection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.uid }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>
+                <form action="{{url_for('borrow_book_user', uid_user=user.uid)}}" method="post">
+                    <button
+                            type="submit"
+                            class="btn btn-success"
+                    >
+                        Select
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if books %}
+<h1 class="h4">Select Book</h1>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Isbn</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Selection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.uid }}</td>
+            <td><i>{{ book.title }}</i></td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+                <form action="{{url_for('borrow_book_user_book', uid_user=user, uid_book=book.uid)}}" method="post">
+                    <button
+                            type="submit"
+                            class="btn btn-success"
+                    >
+                        Select
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% endblock content %}

@@ -1,34 +1,44 @@
 {% extends "layout.html"%} {% block addmodal %}
+
 <div class="content-section">
     <form method="POST" action="">
         {{ addform.hidden_tag() }}
+
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">User</legend>
             <div class="form-group">
                 {{ addform.firstname.label(class="form-control-label") }}
                 {% if addform.firstname.errors %}
                 {{ addform.firstname(class="form-control form-control-lg is-invalid") }}
+
                 <div class="invalid-feedback">
                     {% for error in addform.firstname.errors %}
+
                     <span>{{ error }}</span>
                     {% endfor %}
+
                 </div>
                 {% else %}
                 {{ addform.firstname(class="form-control form-control-lg") }}
                 {% endif %}
+
             </div>
             <div class="form-group">
                 {{ addform.lastname.label(class="form-control-label") }}
                 {% if addform.lastname.errors %}
                 {{ addform.lastname(class="form-control form-control-lg is-invalid") }}
+
                 <div class="invalid-feedback">
                     {% for error in addform.lastname.errors %}
+
                     <span>{{ error }}</span>
                     {% endfor %}
+
                 </div>
                 {% else %}
                 {{ addform.lastname(class="form-control form-control-lg") }}
                 {% endif %}
+
             </div>
         </fieldset>
         <div class="form-group">
@@ -38,23 +48,29 @@
 </div>
 
 {% endblock addmodal %} {% block removemodal %}
+
 <div class="content-section">
     <form method="POST" action="">
         {{ removeform.hidden_tag() }}
+
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">User</legend>
             <div class="form-group">
                 {{ removeform.fullname.label(class="form-control-label") }}
                 {% if removeform.fullname.errors %}
                 {{ removeform.fullname(class="form-control form-control-lg is-invalid") }}
+
                 <div class="invalid-feedback">
                     {% for error in removeform.fullname.errors %}
+
                     <span>{{ error }}</span>
                     {% endfor %}
+
                 </div>
                 {% else %}
                 {{ removeform.fullname(class="form-control form-control-lg") }}
                 {% endif %}
+
             </div>
         </fieldset>
         <div class="form-group">
@@ -64,6 +80,7 @@
 </div>
 
 {% endblock removemodal %} {% block content %}
+
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead class="thead-dark">
@@ -76,6 +93,7 @@
         </thead>
         <tbody>
         {% for user in users %}
+
         <tr>
             <td>{{ user.uid }}</td>
             <td>{{ user.firstname }}</td>
@@ -84,28 +102,29 @@
 
 
                 {% if user.active is sameas true %}
-                <form action="/deactivate/{{user.uid}}" method="post">
+                <form action="{{url_for('deactivate', uid=user.uid)}}" method="post">
                     <button
                             type="submit"
                             class="btn btn-success"
-                            value="{{user.uid}}"
                     >
                         Active
                     </button>
                 </form>
                 {% else %}
-                <form action="/activate/{{user.uid}}" method="post">
+                <form action="{{url_for('activate', uid=user.uid)}}" method="post">
                     <button
                             type="submit"
                             class="btn btn-danger"
-                            value="{{user.uid}}"
                     >
                         Inactive
                     </button>
-                    {% endif %}
+                </form>
+                {% endif %}
+
             </td>
         </tr>
         {% endfor %}
+
         </tbody>
     </table>
 </div>
