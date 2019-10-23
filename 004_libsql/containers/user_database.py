@@ -34,8 +34,8 @@ class UserDatabase:
         user_list = list()
         self.database.execute(f"SELECT * FROM user where active = {is_active}")
         for response in self.database.response():
-            uid, firstname, lastname, _ = response
-            user_list.append(User(uid, firstname, lastname))
+            uid, firstname, lastname, active = response
+            user_list.append(User(uid, firstname, lastname, active))
         return user_list
 
     def get_users_selection(self):

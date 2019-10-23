@@ -17,10 +17,28 @@
             <td>{{ hist.user }}</td>
             <td>{{ hist.book }}</td>
             <td>{{ hist.date }}</td>
-            <td>{{ hist.returned }}</td>
+            <td> {% if hist.returned is sameas true %}
+                <button
+                        type="submit"
+                        class="btn btn-success"
+                >
+                    Returned
+                </button>
+                {% else %}
+                <form action="{{url_for('return_book', uid_user=hist.user.uid, uid_book=hist.book.uid)}}" method="post">
+                    <button
+                            type="submit"
+                            class="btn btn-danger"
+                    >
+                        Return
+                    </button>
+                </form>
+                {% endif %}
+            </td>
+
         </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% endblock content %}
 </div>
+{% endblock content %}

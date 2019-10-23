@@ -64,9 +64,7 @@ class LibraryManager:
         for response in self.historyDB.get_all():
             uid, id_user, id_book, borrow_date, returned = response
             user = self.userDB.get_user_by_id(id_user)
-            uid_book, title, id_category, isbn, id_author = self.bookDB.get_book_by_id(id_book)
-            book = Book(uid_book, title, self.categoryDB.get_category_by_id(id_category), isbn,
-                        self.authorDB.get_author_by_id(id_author), )
+            book = self.get_book_by_id(id_book)
             history_list.append(
                 {
                     "id": uid,
@@ -76,4 +74,4 @@ class LibraryManager:
                     "returned": bool(returned),
                 }
             )
-            return history_list
+        return history_list

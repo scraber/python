@@ -11,8 +11,8 @@ class BookDatabase:
     def get_book_specific_fields(self, *args):
         return self.database.select_specific_fields("book", *args)
 
-    def get_book_by_id(self, idx: int):
-        return self.database.select_by_id("book", idx)
+    # def get_book_by_id(self, idx: int):
+    #     return self.database.select_by_id("book", idx)
 
     def get_all(self):
         return self.database.select_all("book")
@@ -22,5 +22,6 @@ class BookDatabase:
         return self.database.response()
 
     def get_all_available(self):
-        self.database.execute(f"SELECT * FROM book where id IN (SELECT id_book from history where returned = True)")
+        self.database.execute(
+            f"SELECT * FROM book where id NOT IN (SELECT id_book from history where returned = False)")
         return self.database.response()
