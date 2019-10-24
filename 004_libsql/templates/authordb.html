@@ -38,6 +38,19 @@
     </form>
 </div>
 
+<script>
+var formErrors = {% if addform.errors %}true{% else %}false{% endif %};
+$(document).ready(function(){
+    if (formErrors) {
+    $('#add-content-modal').modal('show');
+    }
+});
+
+
+
+</script>
+
+
 {% endblock addmodal %}
 {% block removemodal %}
 <div class="content-section">

@@ -23,7 +23,7 @@ class AddCategoryForm(FlaskForm):
 class AddBookForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired(), Length(min=3, max=50)])
     category = SelectField("Category", coerce=int, choices=[])
-    isbn = IntegerField("ISBN", validators=[DataRequired()])
+    isbn = IntegerField("ISBN", validators=[DataRequired(message="Must be an integer")])
     author = SelectField("Author", coerce=int, choices=[])
     submit = SubmitField("Add")
 
